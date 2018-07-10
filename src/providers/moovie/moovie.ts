@@ -25,5 +25,10 @@ export class MoovieProvider {
     return this.http.get(this.site + "movie/popular" + this.api)
   }
 
+  getMoviesDetails(filmeid){
+    return this.http.get(this.site + `movie/${filmeid}` + this.api)
+  }
+ 
+
 
 }
