@@ -16,21 +16,25 @@
 
 -->
 
-<ion-content padding >
-  <ion-card *ngFor="let filme of lista_filmes" >
+<ion-content padding>
+  
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
+  <ion-card *ngFor="let filme of lista_filmes">
 
     <!--
 Esse comando ngFor é para executar a página em loop e esse código vai executar pelo número da lista
 -->
-      
+
 
     <ion-item>
       <ion-avatar item-start>
         <img src="assets/imgs/Bruno.jpg">
       </ion-avatar>
       <h2 class="feed_title">{{ filme.original_title }} </h2>
-      <p 
-      class="feed_date">{{ filme.release_date }}</p>
+      <p class="feed_date">{{ filme.release_date }}</p>
     </ion-item>
 
     <img [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path">
@@ -54,13 +58,13 @@ Esse comando ngFor é para executar a página em loop e esse código vai executa
       </ion-col>
       <ion-col center text-center>
         <ion-note>
-            {{ objeto_feed.time_comment }}
+          {{ objeto_feed.time_comment }}
         </ion-note>
       </ion-col>
     </ion-row>
 
   </ion-card>
-  
+
 </ion-content>
 <!--
 
