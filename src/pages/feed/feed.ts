@@ -30,11 +30,13 @@ export class FeedPage {
   }
 
 
+  public lista_filmes = new Array<any>(); // any é objeto de javascript para receber qualquer informacao
+
   public nome_usuario: string = "Bruno da Mata"
 
   constructor(
     public navCtrl: NavController,
-    public movieProvider: MoovieProvider,
+    private movieProvider: MoovieProvider,
     public navParams: NavParams) {
   }
 
@@ -46,11 +48,12 @@ export class FeedPage {
     //this.EstadoSistema("Manual");
     this.movieProvider.getLastestMovies().subscribe(
       data => {
-        //const response = (data as any);
-        //const objeto_retorno = JSON.parse(response._body);
-        console.log(data);
+        const response = (data as any); //Data pode receber qualquer valor
+        const objeto_retorno = JSON.parse(response._body); //Converte texto para JSON
+        this.lista_filmes = objeto_retorno.results; //As infromacoes dos filmes estão dentro de results, joga para variavel
+        console.log(objeto_retorno); //Recebe a informação em formato JSON
       error =>{
-        console.log(error);
+        console.log(error);//Dando Error, exibe os erros
       }
 
       }
